@@ -1,0 +1,80 @@
+﻿@model PWHS.Models.CadastroAlergia
+@{
+    Layout = "_Layout3";
+}
+@using (Html.BeginForm("Salvar", "RegistraAlergia", FormMethod.Post, new { style = "width: 100%; margin-left: auto; margin-right: auto; " }))
+{
+    <div class="container" style="width: 100%; margin-top: 100px; margin-left: auto; margin-right: auto; ">
+
+        @*<form role="form" method="post" action="/RegistraAlergia/Salvar">*@
+
+        <div class="row justify-content-md-center" style="">
+
+            <label style="margin-right: auto;font-size: larger;font-weight: 600;">Registro de Alergia</label>
+
+            <div class="container" style="width: 100%; margin-top: 10px;  margin-left: auto; margin-right: auto; border-style: groove; border-radius: 6px;">
+
+                @if (ViewData["Erro"] != null && ViewData["Erro"].ToString() != "")
+                {
+                    <p class="alert alert-danger" style="margin-top: 15px;">@ViewData["Erro"]</p>
+                }
+                @if (ViewData["Sucesso"] != null && ViewData["Sucesso"].ToString() != "")
+                {
+                    <p class="alert alert-success" style="margin-top: 15px;">@ViewData["Sucesso"]</p>
+                }
+
+                <div class="form-row" style="width: 100%; margin-top:40px; margin-left:30px;">
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="pessoa">Pessoa Física:</label>
+                        @Html.DropDownListFor(m => m.IdPessoa, Model.Pessoas, new { @class = "form-control", style = "width: 350px;", disabled = "true" })
+
+                    </div>
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="tipoAlergia">Tipo Alergia:</label>
+                        @if (@ViewData["Edicao"] == null)
+                        {
+                            @Html.DropDownListFor(m => m.IdTipoAlergia, Model.TipoAlergia, new { @class = "form-control", style = "width: 350px;" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(m => m.IdTipoAlergia, Model.TipoAlergia, new { @class = "form-control", style = "width: 350px;", disabled = "true" })
+                        }
+
+                    </div>
+                </div>
+                <div class="form-row" style="width: 100%; margin-top:40px; margin-left:30px;">
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="nomeAlergia">Alergia:</label>
+                        @Html.TextBoxFor(m => m.nomeAlergia, new { @class = "form-control", id = "nomeAlergia", name = "nomeAlergia", type = "text", maxlength = "100", style = "width: 350px;" })
+
+                    </div>
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="status">Status:</label>
+                        @Html.DropDownListFor(m => m.IdStatus, Model.Status, new { @class = "form-control", style = "width: 350px;" })
+
+                    </div>
+                </div>
+
+                <div class="form-row" style="width: 100%;margin-top:40px; margin-left: 30px;">
+
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="descricao">Descrição:</label>
+                        @Html.TextBoxFor(m => m.descricao, new { @class = "form-control", id = "descricao", name = "descricao", type = "text", maxlength = "200", style = "width: 350px;height:100px;" })
+                    </div>
+                </div>
+
+                <div class="row" style="margin-right:auto; ">
+
+                    <button type="submit" class="btn btn-danger" id="btnCancelar" name="submitBtt" value="cancela" style="margin-left:60px; margin-right:50px; margin-bottom: 50px; margin-top: 50px; width: 120px;">Cancelar</button>
+
+                    <button type="submit" class="btn btn-primary" id="btnCadastrar" name="submitBtt" value="cadastra" style="margin-bottom: 50px; margin-top: 50px; width: 120px;">Registrar</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+}

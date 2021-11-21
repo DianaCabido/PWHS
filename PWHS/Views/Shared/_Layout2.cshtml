@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Web de Histórico de Saúde</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #AB2424; height: 60px; ">
+            <a class="navbar-brand" href="@Url.Action("ChamarTelaInicial", "ConsultaHistorico")" style="color:white;">PWHS</a>
+
+            @if (ViewData["codigoPerfil"].ToString() != "2")
+            {
+                <a class="media" type="submit" href="#" onclick="RegistraDoenca()" style=" margin-bottom: 20px; margin-top:15px; margin-left: 60px; "><img src="~/images/IconeDoenca.png" style="width: 60px;" title="REGISTRAR DOENÇA" /></a>
+                <a class="media" type="submit" href="#" onclick="RegistraAlergia()" style=" margin-bottom: 20px; margin-top: 15px; margin-left: 60px; "><img src="~/images/IconeAlergia.png" style="width: 60px;" title="REGISTRAR ALERGIA" /></a>
+                <a class="media" type="submit" href="#" onclick="RegistraFratura()" style=" margin-bottom: 20px; margin-top: 15px; margin-left: 60px; "><img src="~/images/IconeFratura.png" style="width: 60px;" title="REGISTRAR FRATURA" /></a>
+            }
+            <a class="media" type="submit" href="#" onclick="RegistraVacinacao()" style=" margin-bottom: 20px; margin-top: 15px; margin-left: 60px; "><img src="~/images/IconeVacina.png" style="width: 60px;" title="REGISTRAR VACINAÇÃO" /></a>
+
+            <span style="color: white;font-size: 14px;margin-left: auto;margin-bottom: -15px;">@ViewData["MsgLayout"]</span>
+        </nav>
+    </header>
+    <div class="row" style="width:100%;">
+
+        @RenderBody()
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+<script>
+
+    function RegistraDoenca() {
+        window.location.href = '@Url.Action("RegistraDoenca", "ConsultaHistorico")';
+
+    };
+    function RegistraFratura() {
+        window.location.href = '@Url.Action("RegistraFratura", "ConsultaHistorico")';
+
+    };
+    function RegistraAlergia() {
+        window.location.href = '@Url.Action("RegistraAlergia", "ConsultaHistorico")';
+
+    };
+    function RegistraVacinacao() {
+        window.location.href = '@Url.Action("RegistraVacinacao", "ConsultaHistorico")';
+
+    };
+</script>

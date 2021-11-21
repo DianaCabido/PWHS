@@ -1,0 +1,361 @@
+﻿@model PWHS.Models.Historico
+@{
+    Layout = "_Layout2";
+}
+
+<div class="row" style="width: 100%;margin-top: 70px;margin-left: auto;margin-right: auto;">
+
+    <label style="margin-right: auto; font-size: larger; font-weight: 650; margin-left: 35px; margin-bottom: 30px; "> Histórico de Pessoa Física</label>
+
+    <div class="row" style="width: 100%; margin-left:70px;">
+
+        <div class="form" style="width: 20%;">
+            <label for="cpf" style="font-weight: 500;">CPF: </label>
+            <label for="cpf">@Model.pessoa.cpfPF</label>
+        </div>
+        <div class="form" style="width: 20%;">
+            <label for="nome" style="font-weight: 500;">Nome: </label>
+            <label for="nome">@Model.pessoa.nomePF</label>
+        </div>
+        <div class="form" style="width: 20%;">
+            <label for="dataNascimento" style="font-weight: 500;">Data de Nascimento: </label>
+            <label for="dataNascimento">@Model.pessoa.dataNascimento</label>
+        </div>
+        <div class="form" style="width: 20%;">
+            <label for="sexo" style="font-weight: 500;">Sexo: </label>
+            <label for="sexo">@Model.pessoa.sexo</label>
+        </div>
+        <div class="form" style="width: 20%;">
+            <label for="tipoSanguineo" style="font-weight: 500;">Tipo Sanguíneo: </label>
+            <label for="tipoSanguineo">@Model.pessoa.tipoSanguineo</label>
+        </div>
+    </div>
+    <div class="row" style="width: 100%; margin-left:70px; margin-top:15px;">
+
+        <div class="form" style="width: 20%;">
+            <label for="email" style="font-weight: 500;">Email: </label>
+            <label for="email">@Model.pessoa.email</label>
+        </div>
+        <div class="form" style="width: 20%;">
+            <label for="cep" style="font-weight: 500;">Cep: </label>
+            <label for="cep">@Model.pessoa.cep</label>
+        </div>
+        <div class="form" style="width: 20%;">
+            <label for="logadouro" style="font-weight: 500;">Logadouro: </label>
+            <label for="logadouro">@Model.pessoa.logadouro</label>
+        </div>
+        <div class="form" style="width: 20%;">
+            <label for="numero" style="font-weight: 500;">Número: </label>
+            <label for="numero">@Model.pessoa.numero</label>
+        </div>
+        <div class="form" style="width: 20%;">
+            <label for="complemento" style="font-weight: 500;">Complemento: </label>
+            <label for="complemento">@Model.pessoa.complemento</label>
+        </div>
+    </div>
+    <div class="row" style="width: 100%; margin-left: 70px; margin-top: 15px;">
+
+        <div class="form" style="width: 20%;">
+            <label for="bairro" style="font-weight: 500;">Bairro: </label>
+            <label for="bairro">@Model.pessoa.bairro</label>
+        </div>
+        <div class="form" style="width: 20%;">
+            <label for="cidade" style="font-weight: 500;">Cidade: </label>
+            <label for="cidade">@Model.pessoa.cidade</label>
+        </div>
+        <div class="form" style="width: 20%;">
+            <label for="estado" style="font-weight: 500;">Estado: </label>
+            <label for="estado">@Model.pessoa.estado</label>
+        </div>
+        <div class="form" style="width: 20%;">
+            <label for="telefone" style="font-weight: 500;">Telefone: </label>
+            <label for="telefone">@Model.pessoa.telefone</label>
+        </div>
+    </div>
+
+    @if (Model.codigoPerfil != "2")
+    {
+        <div class="row" style="width: 100%; margin-top: 70px;">
+            <label style="margin-right: auto; font-size: larger; font-weight: 500; margin-top: -15px; margin-left: 61px; "> Histórico de Doenças</label>
+            <div class="row fonte" style="margin: 0px 0px 10px 60px !important; width: 100%; border-radius: 6px; background-color: #AB2424; color: white; height: 30px; align-items: end; ">
+
+                <div class="col-md-1">
+                    <h6>Doença</h6>
+                </div>
+                <div class="col-md-3">
+                    <h6>Nome</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6>Observação</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6>Data de Registro</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6>Status</h6>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            @if (Model.listDoencas.Count() != 0)
+            {
+                <div class="row" style="margin: 0px 0px 10px 65px !important; width: 100%; ">
+
+                    @foreach (var index in Model.listDoencas)
+                    {
+                        <div class="row" style="width: 100%; margin-top: 20px; margin-left: 1px;">
+                            <div class="col-md-1">
+                                <span>@index.tipoDoenca</span>
+                            </div>
+                            <div class="col-md-3">
+                                <span>@index.nome</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>@index.observacao</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>@index.dataRegistro</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>@index.status</span>
+                            </div>
+                            <div class="col-md-2">
+                                @using (Html.BeginForm("AcaoBotaoDoenca", "ConsultaHistorico", FormMethod.Post, new { style = "width: 100%;" }))
+                                {
+                                    <span class="botoes">
+                                        <button type="submit" class="btn" id="btnPesquisar" name="submitEdicao" value=@index.codigoDoenca style=""><img src="~/editar.png" style="width:25px;margin-top:-15px;" title="Editar Doença" /></button>
+                                        <button type="submit" class="btn" id="btnPesquisar" name="submitHistorico" value=@index.codigoDoenca style=""><img src="~/historico-medico (1).png" style="width:25px;margin-top:-15px;" title="Log de Doença" /></button>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="row" style=" width: 100%; ">
+
+                    <div class="col-md-2" style="margin-left:auto;margin-right:auto;">
+                        <span>Não há registro de doenças</span>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="row" style="width: 100%; margin-top: 70px;">
+            <label style="margin-right: auto; font-size: larger; font-weight: 500; margin-top: -15px; margin-left: 61px; "> Histórico de Alergias</label>
+            <div class="row fonte" style="margin: 0px 0px 10px 60px !important; width: 100%; border-radius: 6px; background-color: #AB2424; color: white; height: 30px; align-items: end; ">
+
+                <div class="col-md-2">
+                    <h6>Tipo de Alergia</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6>Nome</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6>Descrição</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6>Data de Registro</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6>Status</h6>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+
+
+            @if (Model.listAlergias.Count() != 0)
+            {
+                <div class="row" style="margin: 0px 0px 10px 65px !important; width: 100%; ">
+
+                    @foreach (var index in Model.listAlergias)
+                    {
+                        <div class="row" style="width: 100%; margin-top: 20px; margin-left: 1px; ">
+                            <div class="col-md-2">
+                                <span>@index.tipoAlergia</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>@index.nome</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>@index.descricao</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>@index.dataRegistro</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>@index.status</span>
+                            </div>
+                            <div class="col-md-2">
+                                @using (Html.BeginForm("AcaoBotaoAlergia", "ConsultaHistorico", FormMethod.Post, new { style = "width: 100%;" }))
+                                {
+                                    <span class="botoes">
+                                        <button type="submit" class="btn" id="btnPesquisar" name="submitEdicao" value=@index.codigo style=""><img src="~/editar.png" style="width:25px;margin-top:-15px;" title="Editar Alergia" /></button>
+                                        <button type="submit" class="btn" id="btnPesquisar" name="submitHistorico" value=@index.codigo style=""><img src="~/historico-medico (1).png" style="width:25px;margin-top:-15px;" title="Log de Alergia" /></button>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="row" style=" width: 100%; ">
+                    <div class="col-md-2" style="margin-left: auto; margin-right: auto;">
+                        <span>Não há registro de alergias</span>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="row" style="width: 100%; margin-top: 70px;">
+            <label style="margin-right: auto; font-size: larger; font-weight: 500; margin-top: -15px; margin-left: 61px; "> Histórico de Fraturas</label>
+            <div class="row fonte" style="margin: 0px 0px 10px 60px !important; width: 100%; border-radius: 6px; background-color: #AB2424; color: white; height: 30px; align-items: end; ">
+
+                <div class="col-md-1">
+                    <h6>Lesão</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6>Causa da Fratura</h6>
+                </div>
+                <div class="col-md-1">
+                    <h6>Nome</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6>Descrição</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6>Data de Registro</h6>
+                </div>
+                <div class="col-md-2">
+                    <h6>Status</h6>
+                </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+
+
+            @if (Model.listFraturas.Count() != 0)
+            {
+                <div class="row" style="margin: 0px 0px 10px 65px !important; width: 100%;">
+
+                    @foreach (var index in Model.listFraturas)
+                    {
+                        <div class="row" style="width: 100%; margin-top: 20px; margin-left: 1px; ">
+                            <div class="col-md-1">
+                                <span>@index.tipoLesao</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>@index.causaFratura</span>
+                            </div>
+                            <div class="col-md-1">
+                                <span>@index.nome</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>@index.descricao</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>@index.dataRegistro</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>@index.status</span>
+                            </div>
+                            <div class="col-md-2">
+                                @using (Html.BeginForm("AcaoBotaoFratura", "ConsultaHistorico", FormMethod.Post, new { style = "width: 100%;" }))
+                                {
+                                    <span class="botoes">
+                                        <button type="submit" class="btn" id="btnPesquisar" name="submitEdicao" value=@index.codigoFratura style=""><img src="~/editar.png" style="width:25px;margin-top:-15px;" title="Editar Fratura" /></button>
+                                        <button type="submit" class="btn" id="btnPesquisar" name="submitHistorico" value=@index.codigoFratura style=""><img src="~/historico-medico (1).png" style="width:25px;margin-top:-15px;" title="Log de Fratura" /></button>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="row" style="width: 100%; ">
+                    <div class="col-md-2" style="margin-left: auto; margin-right: auto;">
+                        <span>Não há registro de fraturas</span>
+                    </div>
+                </div>
+            }
+
+        </div>
+    }
+
+    <div class="row" style="width: 100%; margin-top: 70px;">
+        <label style="margin-right: auto; font-size: larger; font-weight: 500; margin-top: -15px; margin-left: 61px; "> Histórico de Vacinação</label>
+        <div class="row fonte" style="margin: 0px 0px 10px 60px !important; width: 100%; border-radius: 6px; background-color: #AB2424; color: white; height: 30px; align-items: end; ">
+
+            <div class="col-md-2">
+                <h6>Vacina</h6>
+            </div>
+            <div class="col-md-2">
+                <h6>Laboratório</h6>
+            </div>
+            <div class="col-md-2">
+                <h6>Lote</h6>
+            </div>
+            <div class="col-md-2">
+                <h6>Validade</h6>
+            </div>
+            <div class="col-md-2">
+                <h6>Usuário Responsável</h6>
+            </div>
+            <div class="col-md-2">
+                <h6>Data de Registro</h6>
+            </div>
+        </div>
+
+
+        @if (Model.listVacinacoes.Count() != 0)
+        {
+            <div class="row" style="margin: 0px 0px 10px 65px !important; width: 100%; ">
+
+                @foreach (var index in Model.listVacinacoes)
+                {
+                    <div class="row" style="width: 100%; margin-top: 20px; margin-left: 1px; ">
+                        <div class="col-md-2">
+                            <span>@index.vacina</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span>@index.laboratorio</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span>@index.lote</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span>@index.validade</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span>@index.usuario</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span>@index.dataRegistro</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="row" style=" width: 100%; ">
+                <div class="col-md-2" style="margin-left: auto; margin-right: auto;">
+                    <span>Não há registro de vacinação</span>
+                </div>
+            </div>
+        }
+
+    </div>
+
+
+</div>
+

@@ -1,0 +1,53 @@
+﻿@model PWHS.Models.AlterarSenha
+@{
+    Layout = "_Layout3";
+}
+@using (Html.BeginForm("Salvar", "AlterarSenha", FormMethod.Post, new { style = "width: 100%; margin-left: auto; margin-right: auto; " }))
+{
+    <div class="container" style="width: 100%; margin-top: 100px; margin-left: auto; margin-right: auto; ">
+
+        <div class="row justify-content-md-center" style="">
+            <div class="col-sm-6">
+                <label style="margin-right: auto;font-size: larger;font-weight: 600;">Alterar Senha</label>
+
+                <div class="container" style="width: 100%; margin-top: 10px;  margin-left: auto; margin-right: auto; border-style: groove; border-radius: 6px; ">
+                    @if (ViewData["Erro"] != null && ViewData["Erro"].ToString() != "")
+                    {
+                        <p class="alert alert-danger" style="margin-top: 15px;">@ViewData["Erro"]</p>
+                    }
+                    @if (ViewData["Sucesso"] != null && ViewData["Sucesso"].ToString() != "")
+                    {
+                        <p class="alert alert-success" style="margin-top: 15px;">@ViewData["Sucesso"]</p>
+                    }
+                    <div class="container" style="margin-left:120px;">
+
+                        <div class="form-group" style="margin-top:50px;">
+                            <label for="senhaAtual">Senha Atual</label>
+                            @Html.TextBoxFor(m => m.senhaAtual, new { @class = "form-control", type = "password", name = "senhaAtual", maxlength = "8", style = "width: 200px;" })
+                        </div>
+                        <div class="form-group" style="margin-top:50px;">
+                            <label for="senhaNova">Nova Senha</label>
+                            @Html.TextBoxFor(m => m.senhaNova, new { @class = "form-control", type = "password", name = "senhaNova" , maxlength = "8", style = "width: 200px;"})
+                        </div>
+                        <div class="form-group" style="margin-top:50px;">
+                            <label for="confirmacao">Confirme a Senha</label>
+                            @Html.TextBoxFor(m => m.confirmacao, new { @class = "form-control", type = "password", name = "confirmacao", maxlength = "8", style = "width: 200px;" })
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="margin-left: 30px;">
+
+                        <button type="submit" class="btn btn-danger" id="btnCancelar" name="submitBtt" value="cancela" style="margin-left:60px; margin-right:50px; margin-bottom: 50px; margin-top: 50px; width: 120px;">Cancelar</button>
+
+                        <button type="submit" class="btn btn-primary" id="btnCadastrar" name="submitBtt" value="cadastra" style="margin-bottom: 50px; margin-top: 50px; width: 120px;">Registrar</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+}

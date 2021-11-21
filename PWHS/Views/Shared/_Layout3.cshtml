@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Web de Histórico de Saúde</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>   
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #AB2424; ">
+            <a class="navbar-brand" href="#" style="color:white;">PWHS</a>
+         <span style="color: white;font-size: 14px;margin-left: auto;margin-bottom: -15px;" >@ViewData["MsgLayout"]</span> 
+        </nav>
+    </header>
+    <div class="row" style="width:100%;">
+
+            @RenderBody()
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿@model PWHS.Models.Historico
+@{
+    Layout = "_Layout3";
+}
+
+<div class="row" style="width: 100%;margin-top: 70px;margin-left: auto;margin-right: auto;">
+
+    <label style="margin-right: auto; font-size: larger; font-weight: 650; margin-left: 35px; margin-bottom: 60px; "> Log da Alergia</label>
+        @using (Html.BeginForm("Cancelar", "HistoricoAlergia", FormMethod.Post))
+    {
+          <div class="row" style="margin-left:auto; ">
+            <button type="submit" class="btn btn-danger" id="btnCancelar" name="submitBtt" value="cancela" style="margin-left:60px; margin-right:50px; margin-bottom: 15px; margin-top: 40px; width: 120px;">Cancelar</button>
+        </div>
+    }
+
+    <div class="row" style="width: 100%; ">
+      
+        <div class="row fonte" style="margin: 0px 0px 10px 60px !important; width: 100%; border-radius: 6px; background-color: #AB2424; color: white; height: 30px; align-items: end; ">
+
+            <div class="col-md-2">
+                <h6>Tipo de Alergia</h6>
+            </div>
+            <div class="col-md-2">
+                <h6>Nome</h6>
+            </div>
+            <div class="col-md-2">
+                <h6>Descrição</h6>
+            </div>
+            <div class="col-md-2">
+                <h6>Data de Registro</h6>
+            </div>
+            <div class="col-md-2">
+                <h6>Status</h6>
+            </div>
+            <div class="col-md-2">
+                <h6>Usuário Responsável</h6>
+            </div>
+        </div>
+
+            <div class="row" style="margin: 0px 0px 10px 60px !important; width: 100%; ">
+
+                @foreach (var index in Model.listAlergias)
+                {
+                    <div class="row" style="width: 100%; margin-top: 20px; margin-left: 1px; ">
+                        <div class="col-md-2">
+                            <span>@index.tipoAlergia</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span>@index.nome</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span>@index.descricao</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span>@index.dataRegistro</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span>@index.status</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span>@index.usuario</span>
+                        </div>
+                    </div>
+                }
+            </div>
+    
+
+    </div>
+
+  
+
+</div>
+

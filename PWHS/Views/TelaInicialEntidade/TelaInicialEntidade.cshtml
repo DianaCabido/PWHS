@@ -1,0 +1,110 @@
+﻿@model TelaInicialEntidade
+@{
+    Layout = "_Layout4";
+}
+
+
+<div class="row" style="width: 100%;margin-top: 100px;margin-left: auto;margin-right: auto;">
+
+    <label style="margin-right: auto; font-size: larger; font-weight: 650; margin-top: -10px; margin-left: 35px; margin-bottom: 60px; ">Consulta de Usuário</label>
+    @using (Html.BeginForm("FiltrarPessoa", "TelaInicialEntidade", FormMethod.Post, new { style = "width:100%;" }))
+    {
+        <div class="form-row" style="width: 100%; margin-left: 30px; margin-bottom: -20px; ">
+
+            @if (ViewData["Erro"] != null && ViewData["Erro"].ToString() != "")
+            {
+                <p class="alert alert-danger" style="margin-top: 15px;">@ViewData["Erro"]</p>
+            }
+            <div class="row">
+                <label for="cpf" style="margin-left: 30px; margin-right: 10px; margin-top: 5px;">CPF:</label>
+                <input class="form-control" type="number" id="cpf" name="cpf" onkeypress='soNumeros(event)' style="width: 200px;">
+            </div>
+            <div class="row">
+                <label for="nome" style="margin-left:80px; margin-right:10px;margin-top:5px;">Nome:</label>
+                <input class="form-control" type="text" id="nome" name="nome" maxlength="50" style="width: 350px;" />
+            </div>
+
+            <div class="row" style="margin-top: -10px; margin-left: auto; ">
+
+                <button type="submit" class="btn btn-primary" id="btnPesquisar" name="submitBtt" value="pesquisa" style="margin-bottom: 50px; margin-top: 10px; width: 130px; margin-left: auto; margin-right: 50px;">Pesquisar</button>
+
+                <button type="submit" class="btn btn-primary" id="btnNovo" name="submitBtt" value="cadastra" style="margin-bottom: 50px; margin-top: 10px; width: 130px; margin-right: 50px;">Cadastrar</button>
+            </div>
+
+        </div>
+    }
+    <div class="row fonte" style="margin: 0px 0px 10px 30px !important; width: 100%; border-radius: 6px; background-color: #AB2424; color: white; height: 30px; align-items: end; ">
+
+        <div class="col-md-2">
+            <h6>CPF</h6>
+        </div>
+        <div class="col-md-4">
+            <h6>Nome</h6>
+        </div>
+        <div class="col-md-2">
+            <h6>Email</h6>
+        </div>
+        <div class="col-md-2">
+            <h6>Perfil</h6>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+
+    @if (Model.grid.Count() != 0)
+    {
+        <div class="row" style="margin: 0px 0px 10px 35px !important; width: 100%; ">
+
+            @foreach (var index in Model.grid)
+            {
+                <div class="row" style=" width: 100%; margin-top:20px;">
+                    <div class="col-md-2">
+                        <span>@index.cpf</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span>@index.nome</span>
+                    </div>
+                    <div class="col-md-2" style="margin-left: 20px;">
+                        <span>@index.email</span>
+                    </div>
+                    <div class="col-md-2">
+                        <span>@index.perfil</span>
+                    </div>
+                    <div class="col-md-2" style="margin-left: -20px;">
+
+                        @using (Html.BeginForm("AcaoBotao", "TelaInicialEntidade", FormMethod.Post))
+                        {
+                            <span class="botoes">
+                                <button type="submit" class="btn" id="btnPesquisar" name="submitEdicao" value=@index.cpf style=""><img src="~/editar.png" style="width:25px;margin-top:-15px;" title="Editar Pessoa Física" /></button>
+
+                            </span>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="row" style="width: 100%; ">
+            <div class="col-md-3" style="margin-left: auto; margin-right: auto;">
+                <span>Não há resultados pra essa pesquisa</span>
+            </div>
+        </div>
+    }
+
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+    document.getElementById("cpf").addEventListener('keydown', function (event) {
+
+        if (this.value.length == 11 && event.keyCode != 8) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+
+</script>

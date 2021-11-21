@@ -1,0 +1,161 @@
+﻿@model PWHS.Models.CadastroUsuario
+@{
+    Layout = "_Layout3";
+}
+
+<div class="container" style="width: 100%; margin-top: 100px; margin-left: auto; margin-right: auto; ">
+    <form role="form" method="post" action="/CadastroUsuario/Salvar">
+        <div class="row justify-content-md-center" style="">
+
+            <label style="margin-right: auto;font-size: larger;font-weight: 600;">Cadastro de Usuário</label>
+
+            <div class="container" style="width: 100%; margin-top: 10px;  margin-left: auto; margin-right: auto; border-style: groove; border-radius: 6px;">
+
+                @if (ViewData["Erro"] != null && ViewData["Erro"].ToString() != "")
+                {
+                    <p class="alert alert-danger" style="margin-top: 15px;">@ViewData["Erro"]</p>
+                }
+                @if (ViewData["Sucesso"] != null && ViewData["Sucesso"].ToString() != "")
+                {
+                    <p class="alert alert-success" style="margin-top: 15px;">@ViewData["Sucesso"]</p>
+                }
+
+                <div class="form-row" style="width: 100%; margin-top:40px; margin-left:30px;">
+
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="cpf">CPF:</label>
+                         @if (@ViewData["Edicao"] == null)
+                        {
+                             @Html.TextBoxFor(m => m.cpf, new { @class = "form-control", id = "cpf", name = "cpf", type = "number", maxlength = "11", onkeypress = "'soNumeros(event)'", style = "width: 200px;" })
+                        }
+                        else
+                        {
+                             @Html.TextBoxFor(m => m.cpf, new { @class = "form-control", id = "cpf", name = "cpf", type = "number", maxlength = "11", onkeypress = "'soNumeros(event)'", style = "width: 200px;", disabled = "true" })
+                        }
+                       
+                    </div>
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="nome">Nome:</label>
+                        @Html.TextBoxFor(m => m.nomeUs, new { @class = "form-control", name = "nomeUs", type = "text", maxlength = "50", style = "width: 350px;" })
+                    </div>
+                </div>
+                <div class="form-row" style="width: 100%; margin-left: 30px;">
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="email">Email:</label>
+                        @Html.TextBoxFor(m => m.email, new { @class = "form-control", name = "email", type = "text", maxlength = "50", style = "width: 350px;" })
+                    </div>
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="perfil">Perfil:</label>
+                        @Html.DropDownListFor(m => m.perfil, Model.listPerfil, new { @class = "form-control", name = "perfil", style = "width: 200px;" })
+                    </div>
+                </div>
+             
+                <div class="form-row" style="width: 100%; margin-left: 30px;">
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="cep">Cep:</label>
+                        @Html.TextBoxFor(m => m.cep, new { @class = "form-control", name = "cep", type = "number", maxlength = "8", style = "width: 200px;" })
+                    </div>
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="logadouro">Logadouro:</label>
+                        @Html.TextBoxFor(m => m.logadouro, new { @class = "form-control", name = "logadouro", type = "text", maxlength = "30", style = "width: 350px;" })
+                    </div>
+                </div>
+                <div class="form-row" style="width: 100%; margin-left: 30px;">
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="numero">Número:</label>
+                        @Html.TextBoxFor(m => m.numero, new { @class = "form-control", name = "numero", type = "number", maxlength = "4", style = "width: 200px;" })
+
+                    </div>
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="complemento">Complemento:</label>
+                        @Html.TextBoxFor(m => m.complemento, new { @class = "form-control", name = "complemento", type = "text", maxlength = "30", style = "width: 350px;" })
+
+                    </div>
+                </div>
+                <div class="form-row" style="width: 100%; margin-left: 30px;">
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="bairro">Bairro:</label>
+                        @Html.TextBoxFor(m => m.bairro, new { @class = "form-control", name = "bairro", type = "text", maxlength = "30", style = "width: 350px;" })
+
+                    </div>
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="cidade">Cidade:</label>
+                        @Html.TextBoxFor(m => m.cidade, new { @class = "form-control", name = "cidade", type = "text", maxlength = "30", style = "width: 350px;" })
+                    </div>
+                </div>
+                <div class="form-row" style="width: 100%; margin-left: 30px;">
+                    <div class="form-group col-md-5" style="width: 50%;">
+                        <label for="estado">Estado:</label>
+                        @Html.DropDownListFor(m => m.IdEstado, Model.listEstado, new { @class = "form-control", name = "estado", style = "width: 200px;" })
+                    </div>
+                    <div class="form-group col-md-5" style="width: 50%; margin-bottom:15px;">
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <label for="ddd">DDD:</label>
+                                @Html.TextBoxFor(m => m.ddd, new { @class = "form-control", name = "ddd", maxlength = "3", type = "number", style = "width: 80px;" })
+                            </div>
+                            <div class="form-group col-md-2" style="margin-left:5px;">
+                                <label for="telefone">Telefone:</label>
+                                @Html.TextBoxFor(m => m.telefone, new { @class = "form-control", name = "telefone", maxlength = "9", type = "number", style = "width: 200px;" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-right:auto; ">
+                    <button type="submit" class="btn btn-danger" id="btnCancelar" name="submitBtt" value="cancela" style="margin-left:60px; margin-right:50px; margin-bottom: 50px; margin-top: 50px; width: 120px;">Cancelar</button>
+
+                    <button type="submit" class="btn btn-primary" id="btnCadastrar" name="submitBtt" value="cadastra" style="margin-bottom: 50px; margin-top: 50px; width: 120px;">Cadastrar</button>
+
+
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+
+
+    document.getElementById("cpf").addEventListener('keydown', function (event) {
+
+        if (this.value.length == 11 && event.keyCode != 8) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+    document.getElementById("cep").addEventListener('keydown', function (event) {
+
+        if (this.value.length == 8 && event.keyCode != 8) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+    document.getElementById("ddd").addEventListener('keydown', function (event) {
+
+        if (this.value.length == 3 && event.keyCode != 8) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+    document.getElementById("telefone").addEventListener('keydown', function (event) {
+
+        if (this.value.length == 9 && event.keyCode != 8) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+    document.getElementById("numero").addEventListener('keydown', function (event) {
+
+        if (this.value.length == 5 && event.keyCode != 8) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+
+</script>
