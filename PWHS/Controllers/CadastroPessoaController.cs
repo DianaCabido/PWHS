@@ -73,6 +73,10 @@ namespace PWHS.Controllers
                                     ViewData["Erro"] = null;
                                     ViewData["Sucesso"] = "Cadastro de Pessoa Fisica realizado com sucesso!";
                                     pessoa = new PessoaFisica();
+
+                                    ObterSexo();
+                                    ObterTipoSanguineo();
+                                    ObterEstado();
                                 }
                                 else
                                 {

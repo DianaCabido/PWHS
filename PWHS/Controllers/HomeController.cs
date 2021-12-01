@@ -39,7 +39,7 @@ namespace PWHS.Controllers
             model.usuario = HttpContext.Request.Form["true"];
 
 
-            if (model.usuario == "true")
+            if (model.usuario == "True")
             {
                 model.usuarioBool = true;
                 model.entidadeBool = false;

@@ -16,7 +16,7 @@ namespace PWHS.Controllers
     {
         private static Usuario usuario = new Usuario();
         private BDpwhs _banco;
-        private static Historico historico= new Historico();
+        private static Historico historico = new Historico();
 
         public IActionResult ConsultaHistorico(Usuario usu)
         {
@@ -166,10 +166,90 @@ namespace PWHS.Controllers
                 historico.pessoa.complemento = linha.ItemArray[4].ToString().ToUpper();
                 historico.pessoa.bairro = linha.ItemArray[5].ToString().ToUpper();
                 historico.pessoa.cidade = linha.ItemArray[6].ToString().ToUpper();
-                historico.pessoa.estado = linha.ItemArray[7].ToString().ToUpper();
                 historico.pessoa.telefone = linha.ItemArray[9].ToString().ToUpper();
+                switch (linha.ItemArray[7].ToString())
+                {
+                    case "1":
+                        historico.pessoa.estado = "AC";
+                        break;
+                    case "2":
+                        historico.pessoa.estado = "AL";
+                        break;
+                    case "3":
+                        historico.pessoa.estado = "AP";
+                        break;
+                    case "4":
+                        historico.pessoa.estado = "AM";
+                        break;
+                    case "5":
+                        historico.pessoa.estado = "BA";
+                        break;
+                    case "6":
+                        historico.pessoa.estado = "CE";
+                        break;
+                    case "7":
+                        historico.pessoa.estado = "DF";
+                        break;
+                    case "8":
+                        historico.pessoa.estado = "ES";
+                        break;
+                    case "9":
+                        historico.pessoa.estado = "GO";
+                        break;
+                    case "10":
+                        historico.pessoa.estado = "MA";
+                        break;
+                    case "11":
+                        historico.pessoa.estado = "MT";
+                        break;
+                    case "12":
+                        historico.pessoa.estado = "MS";
+                        break;
+                    case "13":
+                        historico.pessoa.estado = "MG";
+                        break;
+                    case "14":
+                        historico.pessoa.estado = "PA";
+                        break;
+                    case "15":
+                        historico.pessoa.estado = "PB";
+                        break;
+                    case "16":
+                        historico.pessoa.estado = "PE";
+                        break;
+                    case "17":
+                        historico.pessoa.estado = "PI";
+                        break;
+                    case "18":
+                        historico.pessoa.estado = "RJ";
+                        break;
+                    case "19":
+                        historico.pessoa.estado = "RN";
+                        break;
+                    case "20":
+                        historico.pessoa.estado = "RS";
+                        break;
+                    case "21":
+                        historico.pessoa.estado = "RO";
+                        break;
+                    case "22":
+                        historico.pessoa.estado = "RR";
+                        break;
+                    case "23":
+                        historico.pessoa.estado = "SC";
+                        break;
+                    case "24":
+                        historico.pessoa.estado = "SP";
+                        break;
+                    case "25":
+                        historico.pessoa.estado = "SE";
+                        break;
+                    case "26":
+                        historico.pessoa.estado = "TO";
+                        break;
 
 
+                }
             }
         }
         public void MontarListaAlergia(DataTable tbAlergia)
